@@ -1,0 +1,20 @@
+<% include ../partials/header %>
+
+<header class="jumbotron text-center">
+	<div class="container">
+		<h2><span id="compass-icon"><i class="far fa-compass"></i></span><em> "set your eyes to global places"</em></h2>
+		<p>
+			<a class="btn btn-primary btn-lg" href="/campgrounds/new">Add a Global Place</a>
+		</p>
+		<p>
+			<form class="form-inline" action="/campgrounds" method="GET">
+				<div class="form-group">
+					<input type="text" name="search" class="form-control" placeholder="campground search">
+					<input type="submit" value="search" class="btn btn-default">
+				</div>
+			</form>
+		</p>
+	</div>	
+</header>
+
+<% include ../partials/footer %>
