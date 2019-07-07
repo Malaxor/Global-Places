@@ -25,14 +25,14 @@ router.post("/register", (req, res) => {
    if(adminCode === "IglooHot") {
       newUser.isAdmin = true;
    }
-   // register is provided by passport-local-mongoose plugin that is affixed to the User model
+   // register is provided by passport-local-mongoose plugin that I've affixed to the User model
    User.register(newUser, password, (err, user) => {
       if(err) {
          console.log(err);
          return res.render("register", { error: err.message });
       }
       passport.authenticate("local")(req, res, () => {
-         // req.flash("success", `Nice to meet you ${username}`);
+         req.flash("success", `Nice to meet you ${username}`);
          res.redirect("/"); 
       });
    });
@@ -52,6 +52,7 @@ router.post("/login", passport.authenticate("local",
 // Sign Out Logic
 router.get('/logout', (req, res) => {
    req.logout();
+   req.flash("success", "You've logged out.")
    res.redirect('/');
 });
 module.exports = router;
