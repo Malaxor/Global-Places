@@ -6,7 +6,7 @@ const User = mongoose.model('User');
 
 // Index
 router.get('/', (req, res) => {
-   res.render("places/index");
+   res.render("locations/index");
 });
 // Show Register Form   
 router.get('/register', (req, res) => {

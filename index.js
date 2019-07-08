@@ -38,5 +38,6 @@ app.use((req, res, next) => {
 });
 // routes
 app.use(require('./routes/index'));
+app.use(require('./routes/locations'))
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
