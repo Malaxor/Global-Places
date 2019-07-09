@@ -5,9 +5,9 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 
 // Index
-router.get('/', (req, res) => {
-   res.render("locations/index");
-});
+// router.get('/', (req, res) => {
+//    res.render("locations/index");
+// });
 // Show Register Form   
 router.get('/register', (req, res) => {
    res.render("register", { page: "register" });

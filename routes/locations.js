@@ -6,6 +6,40 @@ const { isLoggedIn } = require('../middleware');
 const { cloudinary, upload } = require('../services/imageUpload');
 const { geocoder } = require('../services/geocoder');
 
+// anti-DDOS attack 
+function escapeRegex(text) {
+   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
+// Index
+router.get("/", (req, res) => {
+	let noMatch;
+
+	if(req.query.search) {
+		const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+		
+		Location.find({ name: regex }, (err, locations) => {
+			if(err) {
+				console.log(err);
+			}
+			else {
+				if(locations.length < 1) {
+					noMatch = "No global locations match that query. Please try again."
+				}
+				res.render("locations/index", { locations, page: 'locations', noMatch });
+			}
+		});
+	}
+	else {
+		Location.find({}, (err, locations) => {
+			if(err) {
+				console.log(err);
+			}
+			else {
+				res.render("locations/index", { locations, page: 'locations', noMatch });
+			}
+		});
+	}	
+});
 // Create
 router.post("/locations", isLoggedIn, upload.single('image'), (req, res) => {
 	const { name, price, description, locality } = req.body;

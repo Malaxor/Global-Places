@@ -7,7 +7,7 @@
 			<a class="btn btn-primary btn-lg" href="/locations/new">Add a Global Place</a>
 		</p>
 		<p>
-			<form class="form-inline" action="/locations" method="GET">
+			<form class="form-inline" action="/" method="GET">
 				<div class="form-group">
 					<input type="text" name="search" class="form-control" placeholder="global places search">
 					<input type="submit" value="search" class="btn btn-default">
@@ -16,5 +16,25 @@
 		</p>
 	</div>	
 </header>
+<div class="row text-center">
+	<div class="col-md-12">
+		<% if(noMatch) { %>
+			<h3><%= noMatch %></h3>
+		<% } %>
+	</div>
+	<% locations.forEach(({ image, name, _id }) => { %>
+		<div class="col-md-3 col-sm-6">
+			<div class="thumbnail">
+				<img src="<%= image %>">
+				<div class="caption">
+					<h4><%= name %></h4>	
+				</div>
+				<p>
+					<a class="btn btn-primary" href="/locations/<%= _id %>">More Info</a>
+				</p>
+			</div>
+		</div>	
+	<% }); %>
+</div>
 
 <% include ../partials/footer %>
