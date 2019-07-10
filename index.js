@@ -10,12 +10,14 @@ const port = process.env.PORT || 4000;
 // mongoose models
 require('./models/User');
 require('./models/Location');
+require('./models/Comment');
 const User = mongoose.model('User');
 mongoose.connect(mongoURI, { useNewUrlParser: true, useCreateIndex: true });
 
+app.use(express.static(__dirname + "/public"));
+app.locals.moment = require('moment');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(flash());
-app.use(express.static(__dirname + "/public"));
 app.set('view engine', 'ejs');
 /***********************  Passport and Local Strategy Config ****************************/
 passport.use(new localStrategy(User.authenticate()));

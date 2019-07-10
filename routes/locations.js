@@ -10,13 +10,13 @@ const { geocoder } = require('../services/geocoder');
 function escapeRegex(text) {
    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 };
-// Index
+// Index: display all locations
 router.get("/", (req, res) => {
 	let noMatch;
 
 	if(req.query.search) {
 		const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-		
+		// fuzzy search
 		Location.find({ name: regex }, (err, locations) => {
 			if(err) {
 				console.log(err);
@@ -37,11 +37,15 @@ router.get("/", (req, res) => {
 			else {
 				res.render("locations/index", { locations, page: 'locations', noMatch });
 			}
-		});
+	   });
 	}	
 });
-// Create
-router.post("/locations", isLoggedIn, upload.single('image'), (req, res) => {
+// New: render a new location form
+router.get('/locations/new', isLoggedIn, (req, res) => {
+   res.render('locations/new');
+});
+// Create: create a new location, then redirect to index page
+router.post('/locations', isLoggedIn, upload.single('image'), (req, res) => {
 	const { name, price, description, locality } = req.body;
 	const { _id, username } = req.user;
 
@@ -52,7 +56,7 @@ router.post("/locations", isLoggedIn, upload.single('image'), (req, res) => {
 			username
 		};
   		geocoder.geocode(locality, (err, data) => {
-			if (err || !data.length) {
+			if(err || !data.length) {
 				req.flash('error', 'Invalid address.');
 				return res.redirect('back');
 			}
@@ -81,8 +85,15 @@ router.post("/locations", isLoggedIn, upload.single('image'), (req, res) => {
 		});
 	});	
 });
-// new location form
-router.get('/locations/new', isLoggedIn, (req, res) => {
-   res.render('locations/new');
+// Show: click on a specific location to see details about that particular location
+router.get('/locations/:id', (req, res) => {
+	Location.findById(req.params.id).populate("comments").exec((err, location) => {
+		if(err) {
+			console.log(err);
+		}
+		else {
+			res.render("locations/show", { location });
+		}
+	});
 });
 module.exports = router;

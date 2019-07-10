@@ -1,9 +1,10 @@
 const NodeGeocoder = require('node-geocoder');
+const { geocoderAPI } = require('../config/keys');
 
 const options = {
    provider: 'google',
    httpAdapter: 'https',
-   apiKey: "AIzaSyBs2MrV7l8KQcs7dVqVQl4v55TfXWrL3Mo",
+   apiKey: geocoderAPI,
    formatter: null
 };
 const geocoder = NodeGeocoder(options);

@@ -1,0 +1,86 @@
+body {
+	font-family: 'Exo 2', sans-serif;
+	font-size: 1.6rem;
+}
+/* Navbar */
+.navbar-default {
+	background-color: #1F2924;
+	border-color: #1F2924;
+}
+.navbar-default .navbar-brand,
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-nav > li > a,
+.navbar-default .navbar-nav > li > a:hover {
+	color: white;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover {
+	background-color: white;
+}
+
+.thumbnail img {
+	width: 100%;
+}
+.thumbnail {
+	padding: 0;
+}
+.thumbnail .caption-full {
+	padding: 9px;
+}
+#dlt-form {
+	display: inline;
+}
+/* Google Maps */
+#map {
+   height: 400px;
+   width: 100%;
+   border: 1px solid black;
+}
+/* Buttons */
+.btn {
+	border-radius: 0;
+	letter-spacing: .5px;
+}
+.btn-danger {
+	background-color: #EB4E4E;
+	border: 1px solid #EB4E4E;
+	color: #fff;
+}
+.btn-danger:hover {
+	background-color: #fff;
+	border: 1px solid #EB4E4E;
+	color: #EB4E4E;
+}
+.btn-warning {
+	background-color: #FFCF9C;
+	border: 1px solid #FFCF9C;
+	color: #fff;
+}
+.btn-warning:hover {
+	background-color: #fff;
+	border: 1px solid #FFCF9C;
+	color: #FFCF9C;
+}
+.btn-success {
+	background-color: #629460;
+	border: 1px solid #629460;
+	color: #fff;
+}
+.btn-success:hover {
+	background-color: #fff;
+	border: 1px solid #629460;
+	color: #629460;
+}
+.btn-primary {
+	background-color: #33658A;
+	border: 1px solid #33658A;
+	color: #fff;
+}
+.btn-primary:hover {
+	background-color: #fff;
+	border: 1px solid #33658A;
+	color: #33658A;
+}
+.form-control {
+	border-radius: 0;
+}
