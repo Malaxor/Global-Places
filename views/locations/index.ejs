@@ -13,7 +13,7 @@
 					<input type="submit" value="search" class="btn btn-default">
 				</div>
 			</form>
-		</p>
+		</p>	
 	</div>	
 </header>
 <div class="row text-center">
@@ -25,13 +25,12 @@
 	<% locations.forEach(({ image, name, _id }) => { %>
 		<div class="col-md-3 col-sm-6">
 			<div class="thumbnail">
-				<img src="<%= image %>">
-				<div class="caption">
-					<h4><%= name %></h4>	
-				</div>
-				<p>
-					<a class="btn btn-primary" href="/locations/<%= _id %>">More Info</a>
-				</p>
+				<a href="/locations/<%= _id %>">
+					<img src="<%= image %>" class='img-responsive'>
+					<div class="caption">
+						<h4><%= name %></h4>	
+					</div>
+				</a>	
 			</div>
 		</div>	
 	<% }); %>

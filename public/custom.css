@@ -2,6 +2,13 @@ body {
 	font-family: 'Exo 2', sans-serif;
 	font-size: 1.6rem;
 }
+a:hover {
+	text-decoration: none;
+}
+/* Jumbotron */
+.container .jumbotron {
+	border-radius: 0px;
+}
 /* Navbar */
 .navbar-default {
 	background-color: #1F2924;
@@ -18,9 +25,6 @@ body {
 	background-color: white;
 }
 
-.thumbnail img {
-	width: 100%;
-}
 .thumbnail {
 	padding: 0;
 }
