@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const Location = mongoose.model('Location');
 
 // Index
 // router.get('/', (req, res) => {
@@ -13,7 +14,7 @@ router.get('/register', (req, res) => {
    res.render("register", { page: "register" });
 });
 // Sign Up Logic
-router.post("/register", (req, res) => {
+router.post('/register', (req, res) => {
    const { username, firstName, lastName, email, avatar, adminCode, password } = req.body;
    const newUser = new User({
       username,
@@ -42,7 +43,7 @@ router.get('/login', (req, res) => {
    res.render('login', { page: 'login' });
 });
 // Login Logic
-router.post("/login", passport.authenticate("local", 
+router.post('/login', passport.authenticate("local", 
    {
 		successRedirect: "/",
 		failureRedirect: "/login"
@@ -54,5 +55,19 @@ router.get('/logout', (req, res) => {
    req.logout();
    req.flash("success", "You've logged out.")
    res.redirect('/');
+});
+// User Profile
+router.get('/users/:id', (req, res) => {
+   User.findById(req.params.id, (err, user) => {
+       if(err) {
+         req.flash("error", "Can't find user.");
+       }
+       Location.find().where("author.id").equals(user._id).exec((err, locations) => {
+         if(err) {
+            req.flash("error", "Something went wrong...");
+         }
+         res.render("users/show", { user, locations });
+      });
+   });
 });
 module.exports = router;
