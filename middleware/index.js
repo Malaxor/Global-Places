@@ -21,7 +21,7 @@ module.exports = {
                // if the logged in user's id matches the id of the person who posted the global location
                if(location.author.id.equals(req.user._id) || req.user && req.user.isAdmin) {
                   next();
-               } // if you're logged in as somebody else, but attempt to access the locations/:id/edit url
+               } // if you're logged in as somebody else but attempt to access the locations/:id/edit url
                else {
                   req.flash("error", "You don't have permission to do that.");
                   res.redirect("back");
