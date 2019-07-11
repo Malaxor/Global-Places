@@ -48,13 +48,13 @@ router.get('/locations/new', isLoggedIn, (req, res) => {
 router.post('/locations', isLoggedIn, upload.single('image'), (req, res) => {
 	const { name, price, description, locality } = req.body;
 	const { _id, username } = req.user;
-
+	const author = {
+		id: _id,
+		username
+	};
 	cloudinary.uploader.upload(req.file.path, result => {
 		const image = result.secure_url;
-		const author = {
-			id: _id,
-			username
-		};
+
   		geocoder.geocode(locality, (err, data) => {
 			if(err || !data.length) {
 				req.flash('error', 'Invalid address.');
@@ -85,7 +85,7 @@ router.post('/locations', isLoggedIn, upload.single('image'), (req, res) => {
 		});
 	});	
 });
-// Show: click on a specific location to see details about that particular location
+// Show: render a page that displays details about a specific location
 router.get('/locations/:id', (req, res) => {
 	Location.findById(req.params.id).populate("comments").exec((err, location) => {
 		if(err) {
@@ -96,10 +96,47 @@ router.get('/locations/:id', (req, res) => {
 		}
 	});
 });
-// Edit
+// Edit: Show edit form
 router.get('/locations/:id/edit', checkLocationOwner, (req, res) => {
 	Location.findById(req.params.id, (err, location) => {
-		res.render("locations/edit", { location });
+		err ? console.log(err) : res.render("locations/edit", { location });
 	});
+});
+// Update
+router.put('/locations/:id', isLoggedIn, upload.single('image'), (req, res) => {
+	const { name, price, description, locality } = req.body;
+
+	cloudinary.uploader.upload(req.file.path, result => {
+		const image = result.secure_url;
+
+  		geocoder.geocode(locality, (err, data) => {
+			if(err || !data.length) {
+				req.flash('error', 'Invalid address.');
+				return res.redirect('back');
+			}
+			const lat = data[0].latitude;
+			const lng = data[0].longitude;
+			const location = data[0].formattedAddress;
+			const newData = {
+				name, 
+				price, 
+				image, 
+				description,  
+				lat, 
+				lng,
+				locality: location
+			};
+			Location.findByIdAndUpdate(req.params.id, newData, (err, location) => {
+				if(err){
+	         	req.flash("error", err.message);
+	            res.redirect("back");
+			  	} 
+			  	else {
+					req.flash("success", "You've updated the global location.");
+	         	res.redirect(`/locations/${location._id}`);
+	        	}
+			});
+		});
+	});	
 });
 module.exports = router;
