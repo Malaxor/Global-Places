@@ -139,4 +139,14 @@ router.put('/locations/:id', isLoggedIn, upload.single('image'), (req, res) => {
 		});
 	});	
 });
+// Destroy: remove global location
+router.delete("/locations/:id", checkLocationOwner, (req, res) => {
+	Location.findByIdAndRemove(req.params.id, (err) => {
+		if(err) {
+			req.flash("error", 'Location can\'t be deleted...');
+		}
+		req.flash('success', "Deletion was successfull. ");
+		res.redirect("/");
+	});
+});
 module.exports = router;

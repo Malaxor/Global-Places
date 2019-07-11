@@ -13,7 +13,7 @@ require('./models/User');
 require('./models/Location');
 require('./models/Comment');
 const User = mongoose.model('User');
-mongoose.connect(mongoURI, { useNewUrlParser: true, useCreateIndex: true });
+mongoose.connect(mongoURI, { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false });
 // activate HTTP verbs "Delete" and "Put" on HTML forms 
 app.use(methodOverride("_method"));
 app.use(express.static(__dirname + "/public"));
