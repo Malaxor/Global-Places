@@ -3,7 +3,7 @@ const router = express.Router({ mergeParams: true });
 const mongoose = require('mongoose');
 const Location = mongoose.model('Location');
 const Comment = mongoose.model('Comment');
-const { isLoggedIn } = require("../middleware");
+const { isLoggedIn, checkCommentOwner } = require("../middleware");
 
 // New: show new comment form
 router.get('/locations/:id/comments/new', isLoggedIn, (req, res) => {
@@ -39,6 +39,40 @@ router.post('/locations/:id/comments', isLoggedIn, (req, res) => {
 					res.redirect(`/locations/${req.params.id}`);
 				}
 			});
+		}
+	});
+});
+// Edit: render edit form 
+router.get('/locations/:id/comments/:comment_id/edit', checkCommentOwner, (req, res) => {
+	Comment.findById(req.params.comment_id, (err, comment) => {
+		if(err) {
+			res.redirect("back");
+		}
+		else {
+			res.render("comments/edit", { location_id: req.params.id, comment });
+		}
+	});
+});
+// Update 
+router.put('/locations/:id/comments/:comment_id', checkCommentOwner, (req, res) => {
+	Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, (err, updatedComment) => {
+		if(err) {
+			res.redirect("back");
+		}
+		else {
+			res.redirect(`/locations/${req.params.id}`);
+		}
+	});
+});
+// Destroy
+router.delete('/locations/:id/comments/:comment_id', checkCommentOwner, (req, res) => {
+	Comment.findByIdAndRemove(req.params.comment_id, err => {
+		if(err) {
+			res.redirect("/");
+		}
+		else {
+			res.redirect('back');
+			req.flash("success", "You've successfully removed the comment.");
 		}
 	});
 });
