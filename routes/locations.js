@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Location = mongoose.model('Location');
-const { isLoggedIn } = require('../middleware');
+const { isLoggedIn, checkLocationOwner } = require('../middleware');
 const { cloudinary, upload } = require('../services/imageUpload');
 const { geocoder } = require('../services/geocoder');
 
@@ -94,6 +94,12 @@ router.get('/locations/:id', (req, res) => {
 		else {
 			res.render("locations/show", { location });
 		}
+	});
+});
+// Edit
+router.get('/locations/:id/edit', checkLocationOwner, (req, res) => {
+	Location.findById(req.params.id, (err, location) => {
+		res.render("locations/edit", { location });
 	});
 });
 module.exports = router;

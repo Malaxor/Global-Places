@@ -7,13 +7,15 @@ const flash = require('connect-flash');
 const bodyParser = require('body-parser');
 const { mongoURI } = require('./config/keys');
 const port = process.env.PORT || 4000;
+const methodOverride = require("method-override");
 // mongoose models
 require('./models/User');
 require('./models/Location');
 require('./models/Comment');
 const User = mongoose.model('User');
 mongoose.connect(mongoURI, { useNewUrlParser: true, useCreateIndex: true });
-
+// activate HTTP verbs "Delete" and "Put" on HTML forms 
+app.use(methodOverride("_method"));
 app.use(express.static(__dirname + "/public"));
 app.locals.moment = require('moment');
 app.use(bodyParser.urlencoded({ extended: true }));

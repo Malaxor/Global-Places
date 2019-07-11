@@ -1,0 +1,92 @@
+<% include ../partials/header %>
+
+<div class="row">
+	<h1 class="text-center"">Edit</h1>
+	<div style="width: 45%; margin: 35px auto">
+		<form 
+			class="form-horizontal" 
+			enctype="multipart/form-data" 
+			action="/locations/<%= location._id %>?_method=PUT" method="POST"
+		>
+			<div class="form-group">
+				<label class="control-label col-md-2" for='name'>Name</label>
+				<div class='col-md-10'>
+					<input
+						id="name"
+						class="form-control" 
+						type="text" 
+						placeholder="name" 
+						value="<%= location.name %>" 
+						name="name" 
+						required
+					>
+				</div>	
+			</div>
+			<div class="form-group">
+				<label class="control-label col-md-2" for='locality'>Locality</label>
+				<div class="col-md-10">
+					<input 
+						id="locality"
+						class="form-control" 
+						type="text" 
+						placeholder="location" 
+						value="<%= location.locality %>" 
+						name="location"
+						required
+					>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-md-2" for='price'>Price</label>
+				<div class="col-md-10">
+					<input
+						id='price' 
+						class="form-control" 
+						type="number" 
+						placeholder="price" 
+						value="<%= location.price %>" 
+						name="price"
+						min="0.01"
+						step="0.01" 
+						required
+					>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-md-2" for='image'>Image</label>
+				<div class="col-md-10">
+					<input
+						id='image' 
+						class="form-control" 
+						type="file" 
+						name="image" 
+						required
+						accept="image/*"
+					>
+				</div>	
+			</div>
+			<div class="form-group">
+				<label class="control-label col-md-2" for='description'>Description</label>
+				<div class="col-md-10">
+					<input
+						id='description' 
+						class="form-control" 
+						type="text" 
+						placeholder="description" 
+						value="<%= location.description %>" 
+						name="description" 
+						required
+					>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-12">
+					<button class="btn btn-lg btn-default btn-primary btn-block">Update</button>
+				</div>
+			</div>
+		</form>
+		<a href="/">Go Back</a>	
+	</div>
+</div>
+
+<% include ../partials/footer %>
