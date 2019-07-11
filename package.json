@@ -2,10 +2,10 @@
   "name": "global-places",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "engines": {
-    "npm": "6.9.0",
-    "node": "12.2.0"
+    "node": "12.2.0",
+    "npm": "6.9.0"
   },
   "scripts": {
     "start": "node index.js",
