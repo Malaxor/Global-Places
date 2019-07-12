@@ -6,9 +6,21 @@ a:hover {
 	text-decoration: none;
 }
 /* Jumbotron */
-.container .jumbotron {
-	border-radius: 0px;
+.wrapper {
+	height: 330px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 30px;
+	padding: 5px 30px;
+	background-image: url('./img/travel2.jpg');
+	background-size: cover;
+	background-position: center;
 }
+.wrapper h2 {
+	margin: 0 -150px 30px 0;
+}
+
 /* Navbar */
 .navbar-default {
 	background-color: #1F2924;
@@ -91,6 +103,3 @@ a:hover {
 	text-align: left;
 }
 /* Comments Section */
-div.well {
-	display: flexbox;
-}
