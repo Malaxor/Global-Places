@@ -1,22 +1,20 @@
 <% include ../partials/header %>
 
-<div class="row">
-	<div class="col-md-12">
-		<div class='wrapper'>
-			<h2><em>"Set your eyes on global places."</em></h2>
-			<p>
-				<a class="btn btn-primary btn-lg" href="/locations/new">Add a Global Place</a>
-			</p>
-			<p>
-				<form class="form-inline" action="/" method="GET">
-					<div class="form-group">
-						<input type="text" name="search" class="form-control" placeholder="global places search">
-						<input type="submit" value="search" class="btn btn-default">
-					</div>
-				</form>
-			</p>
-		</div>		
-	</div>	
+<header class='content'>
+	<div class='tagline'>
+		<h2><em>"Set your eyes on global places."</em></h2>
+	</div>
+	<div class="fuzzy-search">
+		<form class="form-inline" action="/" method="GET">
+			<div class="form-group">
+				<input type="text" name="search" class="form-control" placeholder="global places search">
+				<input type="submit" value="search" class="btn btn-default">
+			</div>
+		</form>
+	</div>
+</header>
+<div class="search-btn">
+	<a class="btn btn-location btn-lg" href="/locations/new">Add a Global Place</a>
 </div>
 <div class="row text-center">
 	<div class="col-md-12">

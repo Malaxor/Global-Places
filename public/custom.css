@@ -5,22 +5,31 @@ body {
 a:hover {
 	text-decoration: none;
 }
-/* Jumbotron */
-.wrapper {
-	height: 330px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-bottom: 30px;
-	padding: 5px 30px;
-	background-image: url('./img/travel2.jpg');
-	background-size: cover;
+/* Heading */
+.content {
+	position: relative;
+	width: 100%;
+	height: 370px;
+	background: url('./img/travel2.jpg');
+	background-repeat: no-repeat;
 	background-position: center;
 }
-.wrapper h2 {
-	margin: 0 -150px 30px 0;
+.content .tagline {
+	position: absolute;
+	top: 10%;
+	left: 55%;
+	transform: translate(-50%, -50%);
 }
-
+.search-btn a {
+	width: 100%;
+	margin-bottom: 5vh;
+}
+.fuzzy-search {
+	position: absolute;
+	top: 60%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+} 
 /* Navbar */
 .navbar-default {
 	background-color: #1F2924;
@@ -95,6 +104,16 @@ a:hover {
 	background-color: #fff;
 	border: 1px solid #33658A;
 	color: #33658A;
+}
+.btn-location {
+	background-color: #FAA96A;
+	border: 2px solid #FAA96A;
+	color: #fff;
+}
+.btn-location:hover {
+	background-color: #fff;
+	border: 1.5px solid #FAA96A;
+	color: #FAA96A;
 }
 .form-control {
 	border-radius: 0;
