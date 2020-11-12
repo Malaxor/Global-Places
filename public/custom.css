@@ -2,6 +2,9 @@ body {
 	font-family: 'Exo 2', sans-serif;
 	font-size: 1.6rem;
 }
+p {
+	word-break: break-all;
+}
 a:hover {
 	text-decoration: none;
 }
@@ -121,4 +124,3 @@ a:hover {
 .form-horizontal .control-label {
 	text-align: left;
 }
-/* Comments Section */

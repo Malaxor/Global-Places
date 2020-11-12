@@ -29,7 +29,6 @@ router.post('/register', (req, res) => {
    // register is provided by passport-local-mongoose plugin that I've affixed to the User model
    User.register(newUser, password, (err, user) => {
       if(err) {
-         console.log(err);
          return res.render("register", { error: err.message });
       }
       passport.authenticate("local")(req, res, () => {
@@ -52,8 +51,8 @@ router.post('/login', passport.authenticate("local",
 });
 // Sign Out Logic
 router.get('/logout', (req, res) => {
-   req.logout();
-   req.flash("success", "You've logged out.")
+   req.logout();   
+   req.flash("success", "You've logged out.");
    res.redirect('/');
 });
 // User Profile
