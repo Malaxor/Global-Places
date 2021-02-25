@@ -1,4 +1,4 @@
-Global Places is a Node.js CRUD app where users can share information and pictures of any place, anywhere in the world they've been, or would like to visit. Sign into the app to share information, pictures and to leave comments.
+Global Places is a Node.js CRUD app where users can share information and pictures of any place, anywhere in the world they've been, or would like to visit. Sign into the app to share information, pictures and author comments.
 
 ### Live Demo: https://evening-atoll-74570.herokuapp.com/
 
