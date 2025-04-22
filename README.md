@@ -65,4 +65,4 @@ Global Places is a Node.js CRUD app where users can share information and pictur
 ### Platforms 
 
 * [Cloudinary](https://cloudinary.com/)
-* [Heroku](https://www.heroku.com/)
+* [Render](https://www.render.com/)
